@@ -232,12 +232,12 @@
                                 <input type="hidden" name="additional" value="True">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <label for="link_x" class="mb-3 mt-4"><h3>Lien profile Facebook</h3></label>
-                                        <input type="text"  name="link_x" required>
+                                        <label for="link_fb" class="mb-3 mt-4"><h3>Lien profile Facebook</h3></label>
+                                        <input type="text"  name="link_fb" required>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label for="link_yout" class="mb-3 mt-4"><h3>Lien profile Youtube</h3></label>
-                                        <input type="text"  name="link_yout" required>
+                                        <label for="link_insta" class="mb-3 mt-4"><h3>Lien profile Instagram</h3></label>
+                                        <input type="text"  name="link_insta" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -251,7 +251,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <label for="job_utilisateur" class="mb-3 mt-4"><h3>Telephone</h3></label>
+                                    <label for="job_utilisateur" class="mb-3 mt-4"><h3>Job</h3></label>
                                     <input type="text"  name="job_utilisateur" required>
                                 </div>
                                 <div>
