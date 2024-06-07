@@ -86,6 +86,11 @@
 </head>
 
 <body class="body-fixed">
+    <?php include_once("../controllers/getListeUtilisateurs.php") ?>
+
+
+
+
     <!-- start of header  -->
     <header class="site-header">
         <div class="container">
@@ -196,35 +201,39 @@
                         
                     
                         <div class="createact-form">
+                            <?php $utilisateur = getUtilisateurById($_SESSION['userid']) ?>
                             <form action="../controllers/updateUtilisateur.php." method="post" enctype="multipart/form-data">
                                 <!-- By default this need to be full filled -->
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <label for="titre_activite" class="mb-3 mt-"><h3>Nom</h3></label>
-                                        <input type="text" name="nom_utilisateur" required>
+                                        <label for="nom_utilisateur" class="mb-3 mt-"><h3>Nom</h3></label>
+                                        <input type="text" name="nom_utilisateur" value="<?= $utilisateur->getNomUtilisateur() ?>" required>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label for="lieu_activite" class="mb-3 mt-"><h3>Postnom</h3></label>
-                                        <input type="text" name="prenom_utilisateur" required>
+                                        <label for="prenom_utilisateur" class="mb-3 mt-"><h3>Prenom</h3></label>
+                                        <input type="text" name="prenom_utilisateur" value="<?= $utilisateur->getPrenomUtilisateur() ?>" required>
                                     </div>
                                 </div>
                                 <div >
                                     <label for="profil_utilisateur" class="mb-3 mt-4"><h3>Profile</h3></label>
-                                    <input type="file"  name="profil_utilisateur" required>
+                                    <input type="file"  name="profil_utilisateur" value="">
+                                    <input type="hidden"  name="profil_utilisateur_old" value="<?= $utilisateur->getProfilUtilisateur() ?>">
+                                    <img src="../assets/images/profiles_users/<?= $utilisateur->getProfilUtilisateur() ?>" width="200" height="auto" class="img-thumbnail" alt="" srcset="">
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label for="email_utilisateur" class="mb-3 mt-4"><h3>Email</h3></label>
-                                        <input type="email"  name="email_utilisateur" required>
+                                        <input type="email"  name="email_utilisateur" value="<?= $utilisateur->getEmailUtilisateur() ?>" required>
                                     </div>
                                     <div class="col-lg-6">
                                         <label for="phone_utilisateur" class="mb-3 mt-4"><h3>Telephone</h3></label>
-                                        <input type="text"  name="phone_utilisateur" required>
+                                        <input type="text"  name="phone_utilisateur" value="<?= $utilisateur->getPhoneUtilisateur() ?>" required>
                                     </div>
                                 </div>
                                 <div>
-                                    <label for="pwd_utilisateur" class="mb-3 mt-4"><h3>Mot de passe</h3></label>
-                                    <input type="text" name="nom_utilisateur" required>
+                                    <label for="pwd_utilisateur" class="mb-3 mt-4"><h3>Nouveau Mot de passe</h3></label>
+                                    <input type="text" name="pwd_utilisateur">
+                                    <input type="hidden" name="pwd_utilisateur_old" value="<?= $utilisateur->getPwdUtilisateur() ?>">
                                 </div>
                                 
 
@@ -250,13 +259,15 @@
                                         <input type="text"  name="link_yout" required>
                                     </div>
                                 </div>
-                                <div>
-                                    <label for="job_utilisateur" class="mb-3 mt-4"><h3>Job</h3></label>
-                                    <input type="text"  name="job_utilisateur" required>
-                                </div>
-                                <div>
-                                    <label for="year_xperia_utilisateur" class="mb-3 mt-4"><h3>Annee d'experience</h3></label>
-                                    <input type="text"  name="year_xperia_utilisateur" required>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label for="job_utilisateur" class="mb-3 mt-4"><h3>Job</h3></label>
+                                        <input type="text"  name="job_utilisateur" required>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="year_xperia_utilisateur" class="mb-3 mt-4"><h3>Annee d'experience</h3></label>
+                                        <input type="text"  name="year_xperia_utilisateur" required>
+                                    </div>
                                 </div>
                                 <div>
                                     <label for="address_utilisateur" class="mb-3 mt-4"><h3>Adresse</h3></label>

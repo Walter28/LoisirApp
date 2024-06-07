@@ -4,6 +4,9 @@ session_start();
 include '../configuration/config.php';
 include '../models/Utilisateur.php';
 
+print_r($_POST);
+die;
+
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 

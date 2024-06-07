@@ -106,7 +106,9 @@
             $address_utilisateur = $this->address_utilisateur;
 
             $requete = "UPDATE utilisateur set nom_utilisateur = ?, prenom_utilisateur = ?, profil_utilisateur = ? 
-            email_utilisateur = ?, phone_utilisateur = ?, pwd_utilisateur = ?, date_creation_compte = ?, satus_compte = ? where id_utilisateur = ?";
+            email_utilisateur = ?, phone_utilisateur = ?, pwd_utilisateur = ?, date_creation_compte = ?, satus_compte = ? 
+            additional, description_utilisateur, link_fb, link_insta, link_x, link_yout, job_utilisateur, year_xperia_utilisateur,
+            address_utilisateur where id_utilisateur = ?";
             $statement = $db->prepare($requete);
             $execute=$statement->execute(array($nom_utilisateur, $prenom_utilisteur, $profil_utilisateur, $email_utilisateur,
             $phone_utilisateur, $pwd_utilisateur, $date_creation_compte, $status_compte,
