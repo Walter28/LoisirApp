@@ -68,6 +68,15 @@
 </head>
 
 <body class="body-fixed">
+    
+    <?php include_once("../controllers/getAdditional.php") ?>
+    <?php
+        $additional = getAdditional($_SESSION['userid']);
+        if ($additional == 0 or $additional =="") {
+            header("Location:../views/update_account.php");
+        }
+    ?>
+
     <!-- start of header  -->
     <header class="site-header">
         <div class="container">
@@ -158,6 +167,15 @@
 
     <div id="viewport">
         <div id="js-scroll-content">
+
+            <!--Success alert-->
+            <?php if(isset($_GET['updt_msg'])) { ?>
+                <div class="alert alert-success alert-dismissible fade-down show m-auto">
+                    <strong>Error !!!</strong><br>
+                    La mise a jour compte se terminer avec succé
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div><br>
+            <?php } ?>
 
             <section class="hero main-banne mt-5" id="home">
                 <div class="main-content" data-aos="fade-in">
