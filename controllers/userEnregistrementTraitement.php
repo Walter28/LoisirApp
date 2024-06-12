@@ -64,7 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $date_creation_compte = null;
     $status_compte = "client";
 
-    $additional = null;
+    $additional = False;
     $description_utilisateur = null;
     $link_fb = null;
     $link_insta = null;
