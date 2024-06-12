@@ -149,7 +149,7 @@
                                             </div>
             
                                             <!-- item-->
-                                            <a href="views/profile.php" class="dropdown-item">
+                                            <a href="profile.php" class="dropdown-item">
                                                 <i class="mdi mdi-account-circle me-1"></i>
                                                 <span>Mon Compte</span>
                                             </a>
