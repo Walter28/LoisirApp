@@ -87,7 +87,7 @@
             $resultat = false;
 
             $nom_utilisateur = $this->nom_utilisateur;
-            $prenom_utilisteur = $this->prenom_utilisateur;
+            $prenom_utilisateur = $this->prenom_utilisateur;
             $profil_utilisateur = $this->profil_utilisateur;
             $email_utilisateur = $this->email_utilisateur ;
             $phone_utilisateur = $this->phone_utilisateur;
@@ -105,14 +105,12 @@
             $year_xperia_utilisateur = $this->year_xperia_utilisateur;
             $address_utilisateur = $this->address_utilisateur;
 
-            $requete = "UPDATE utilisateur set nom_utilisateur = ?, prenom_utilisateur = ?, profil_utilisateur = ? 
-            email_utilisateur = ?, phone_utilisateur = ?, pwd_utilisateur = ?, 
-            additional, description_utilisateur, link_fb, link_insta, link_x, link_yout, job_utilisateur, year_xperia_utilisateur,
-            address_utilisateur where id_utilisateur = ?";
+            $requete = "UPDATE utilisateur set nom_utilisateur = ?, prenom_utilisateur = ?, profil_utilisateur = ?, 
+            email_utilisateur = ?, phone_utilisateur = ?, pwd_utilisateur = ?, additional = ?, description_utilisateur = ?, link_fb = ?, link_insta = ?, link_x = ?, link_yout = ?, job_utilisateur = ?, year_xperia_utilisateur = ?,
+            address_utilisateur = ? where id_utilisateur = ?";
             $statement = $db->prepare($requete);
-            $execute=$statement->execute(array($nom_utilisateur, $prenom_utilisteur, $profil_utilisateur, $email_utilisateur,
-            $phone_utilisateur, $pwd_utilisateur,
-            $additional, $description_utilisateur, $link_fb, $link_insta, $link_x, $link_yout, $job_utilisateur, 
+            $execute=$statement->execute(array($nom_utilisateur, $prenom_utilisateur, $profil_utilisateur, $email_utilisateur,
+            $phone_utilisateur, $pwd_utilisateur, $additional, $description_utilisateur, $link_fb, $link_insta, $link_x, $link_yout, $job_utilisateur, 
             $year_xperia_utilisateur, $address_utilisateur, $id_utilisateur));
 
             return $resultat = $execute ? true : false;
@@ -141,6 +139,20 @@
                     if($data = $statement -> fetch()){
                         $id = $data['id_utilisateur'];
                         return $id;
+                    } else return null;
+                } else return null;
+        }
+
+        static function isAdditionalTrue($userid){
+                global $db;
+                $requete = 'SELECT additional FROM utilisateur WHERE id_utilisateur = ? ';
+                $statement = $db->prepare($requete);
+                $execute = $statement->execute(array($userid));
+
+                if ($execute) {
+                    if($data = $statement -> fetch()){
+                        $status_compte = $data['additional'];
+                        return $status_compte;
                     } else return null;
                 } else return null;
         }
