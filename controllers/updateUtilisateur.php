@@ -4,13 +4,55 @@ session_start();
 include '../configuration/config.php';
 include '../models/Utilisateur.php';
 
-print_r($_POST);
-print_r($_FILES);
-if($_FILES['profil_utilisateur']['name'] == "") echo "nothin''''";
-die;
-
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    //check if the image file was succesfully sent
+    if(isset($_FILES['profil_utilisateur']) && $_FILES['profil_utilisateur']['error'] == 0) {
+        $allowed = [
+            'jpg' => 'image/jpg',
+            'jpeg' => 'image/jpeg',
+            'png' => 'image/png'
+        ];
+        
+
+        $fileName = $_FILES['profil_utilisateur']['name'];
+        $fileType = $_FILES['profil_utilisateur']['type'];
+        $fileSize = $_FILES['profil_utilisateur']['size'];
+        $fileTmpName = $_FILES['profil_utilisateur']['tmp_name'];
+
+        // check the file extension
+        $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        if (!array_key_exists($fileExtension, $allowed)) {
+            die("Erreur : Format de fichier non autorise.");
+        }
+
+        // check the MIME typeof the file
+        if(!in_array($fileType, $allowed)){
+            die("Erreur : Type de fichier non autorise.");
+        }
+
+        // check the file size (max : 5Mo)
+        if($fileSize > 5 * 1024 * 1024){
+            die("Erreur : La taille du fichier est trop grande.");
+        }
+
+        // Destination path
+        $uploadDir = '../assets/images/profiles_users/';
+        if(!is_dir($uploadDir)){
+            mkdir($uploadDir, 0755, true);
+        }
+
+        $uploadFilePath  = $uploadDir . basename($fileName);
+
+        // Move the file into the webapp directory
+        if(move_uploaded_file($fileTmpName, $uploadFilePath)) {
+            echo "L'image a ete telecharger avec succes.";
+        } else {
+            echo "Erreur lors du telechargement de l'image";
+        }
+
+    } else { echo "Erreur : " . $_FILES['profil_utilisateur']['error']; }
 
 
     $nom_utilisateur = htmlspecialchars($_POST['nom_utilisateur']);
@@ -20,12 +62,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email_utilisateur = htmlspecialchars($_POST['email_utilisateur']);
     $phone_utilisateur = htmlspecialchars($_POST['phone_utilisateur']);
     $pwd_utilisateur = htmlspecialchars($_POST['pwd_utilisateur']);
-    if($_POST['$pwd_utilisateur'] == "") $pwd_utilisateur = htmlspecialchars($_POST['pwd_utilisateur_old']);
+    if($_POST['pwd_utilisateur'] == "") $pwd_utilisateur = htmlspecialchars($_POST['pwd_utilisateur_old']);
     else $pwd_utilisateur = md5($pwd_utilisateur);
     $date_creation_compte = null;
-    $status_compte = "client";
+    $status_compte = "proprietaire";
 
     $additional = htmlspecialchars($_POST['additional']);
+    $additional = True;
     $description_utilisateur = htmlspecialchars($_POST['description_utilisateur']);
     $link_fb = htmlspecialchars($_POST['link_fb']);
     $link_insta = htmlspecialchars($_POST['link_insta']);
@@ -40,15 +83,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $link_x, $link_yout, $job_utilisateur, $year_xperia_utilisateur, $address_utilisateur);
 
     if ($user->updateUtilisateur($_SESSION['userid'])) {
-        $_SESSION['message'] = 200;
-        header("Location:../login.php?success");
+        $_SESSION['updt_msg'] = 200;
+        header("Location:../views/profile.php?success");
     } else {
         var_dump($_SESSION['message']);
-        $_SESSION['message'] = 101;
-        header("Location:../login.php?error");
+        $_SESSION['updt_ms'] = 101;
+        header("Location:../views/update_account.php?error");
     }
 }
 else {
-    $_SESSION['message'] = 102;
-    header("Location:../login.php?error");
+    $_SESSION['updt_msg'] = 102;
+    header("Location:../views/update_account.php?error");
 }
