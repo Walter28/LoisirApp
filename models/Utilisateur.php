@@ -92,8 +92,8 @@
             $email_utilisateur = $this->email_utilisateur ;
             $phone_utilisateur = $this->phone_utilisateur;
             $pwd_utilisateur = $this->pwd_utilisateur;
-            $date_creation_compte = $this->date_creation_compte;
-            $status_compte = $this->status_compte;
+        //     $date_creation_compte = $this->date_creation_compte;
+        //     $status_compte = $this->status_compte;
 
             $additional = $this->additional;
             $description_utilisateur = $this->description_utilisateur;
@@ -106,12 +106,12 @@
             $address_utilisateur = $this->address_utilisateur;
 
             $requete = "UPDATE utilisateur set nom_utilisateur = ?, prenom_utilisateur = ?, profil_utilisateur = ? 
-            email_utilisateur = ?, phone_utilisateur = ?, pwd_utilisateur = ?, date_creation_compte = ?, satus_compte = ? 
+            email_utilisateur = ?, phone_utilisateur = ?, pwd_utilisateur = ?, 
             additional, description_utilisateur, link_fb, link_insta, link_x, link_yout, job_utilisateur, year_xperia_utilisateur,
             address_utilisateur where id_utilisateur = ?";
             $statement = $db->prepare($requete);
             $execute=$statement->execute(array($nom_utilisateur, $prenom_utilisteur, $profil_utilisateur, $email_utilisateur,
-            $phone_utilisateur, $pwd_utilisateur, $date_creation_compte, $status_compte,
+            $phone_utilisateur, $pwd_utilisateur,
             $additional, $description_utilisateur, $link_fb, $link_insta, $link_x, $link_yout, $job_utilisateur, 
             $year_xperia_utilisateur, $address_utilisateur, $id_utilisateur));
 
