@@ -64,31 +64,11 @@
             height: 350px;
             width: 400px;
         }
-
-        #preview3 {
-            margin-top: 10px;
-            max-width: 100%;
-            height: auto;
-            display: none; /* Masque par defaut */
-            height: 350px;
-            width: 400px;
-        }
-
-        #preview4 {
-            margin-top: 10px;
-            max-width: 100%;
-            height: auto;
-            display: none; /* Masque par defaut */
-            height: 350px;
-            width: 400px;
-        }
     </style>
 </head>
 
 <body class="body-fixed">
     <?php include_once("../controllers/getListeUtilisateurs.php") ?>
-
-
 
 
     <!-- start of header  -->
@@ -154,7 +134,7 @@
                                             </div>
             
                                             <!-- item-->
-                                            <a href="views/profile.php" class="dropdown-item">
+                                            <a href="profile.php" class="dropdown-item">
                                                 <i class="mdi mdi-account-circle me-1"></i>
                                                 <span>Mon Compte</span>
                                             </a>
@@ -198,11 +178,21 @@
                             </div>
                         </div>
 
+
+                        <!--Error alert-->
+                        <?php if(isset($_GET['updt_msg'])) { ?>
+                            <div class="alert alert-danger alert-dismissible fade-down show m-auto">
+                                <strong>Error !!!</strong><br>
+                                La mise a jour compte ne se pas terminer avec succé
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div><br>
+                        <?php } ?>
+
                         
                     
                         <div class="createact-form">
                             <?php $utilisateur = getUtilisateurById($_SESSION['userid']) ?>
-                            <form action="../controllers/updateUtilisateur.php." method="post" enctype="multipart/form-data">
+                            <form action="../controllers/updateUtilisateur.php" method="post" enctype="multipart/form-data">
                                 <!-- By default this need to be full filled -->
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -216,9 +206,9 @@
                                 </div>
                                 <div >
                                     <label for="profil_utilisateur" class="mb-3 mt-4"><h3>Profile</h3></label>
-                                    <input type="file"  name="profil_utilisateur">
+                                    <input type="file"  name="profil_utilisateur" id="profil_utilisateur" onchange="previewImage(event)">
                                     <input type="hidden"  name="profil_utilisateur_old" value="<?= $utilisateur->getProfilUtilisateur() ?>">
-                                    <img src="../assets/images/profiles_users/<?= $utilisateur->getProfilUtilisateur() ?>" width="200" height="auto" class="img-thumbnail" alt="" srcset="">
+                                    <img src="../assets/images/profiles_users/<?= $utilisateur->getProfilUtilisateur() ?>" width="200" height="auto" id="preview" class="img-thumbnail" alt="" srcset="">
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -232,7 +222,7 @@
                                 </div>
                                 <div>
                                     <label for="pwd_utilisateur" class="mb-3 mt-4"><h3>Nouveau Mot de passe</h3></label>
-                                    <input type="text" name="pwd_utilisateur">
+                                    <input type="password" name="pwd_utilisateur" placeholder="Leave blank to keep old password ...">
                                     <input type="hidden" name="pwd_utilisateur_old" value="<?= $utilisateur->getPwdUtilisateur() ?>">
                                 </div>
                                 
@@ -271,7 +261,7 @@
                                 </div>
                                 <div>
                                     <label for="address_utilisateur" class="mb-3 mt-4"><h3>Adresse</h3></label>
-                                    <input type="text"  name="address_utilisateurr" required>
+                                    <input type="text"  name="address_utilisateur" required>
                                 </div>
                                 <div>
                                     <label for="description_utilisateur" class="mb-3 mt-4"><h3>Description</h3></label>
@@ -431,108 +421,34 @@
     <script src="../assets/js/main.js"></script>
 
     <script>
-        function previewImage1(event) {
+        function previewImage(event) {
             const fileInput = event.target;
             const file = event.target.files[0];
             if(file && file.type.startsWith('image/')) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const preview1 = document.getElementById("preview1");
-                    preview1.src = e.target.result;
-                    preview1.style.display = 'block';
+                    const preview = document.getElementById("preview");
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
                 };
                 reader.readAsDataURL(file);
             } else {
                 alert("Veillez selectioner un fichier image.");
                 fileInput.value = ""; // reinitialiser le champ input
-                const preview1 = document.getElementById("preview1");
-                preview1.style.display = 'none'; //cache l'image de previsualisation
+                const preview = document.getElementById("preview");
+                preview.style.display = 'none'; //cache l'image de previsualisation
             }
         }
 
-        function previewImage2(event) {
-            const fileInput = event.target;
-            const file = event.target.files[0];
-            if(file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const preview1 = document.getElementById("preview2");
-                    preview2.src = e.target.result;
-                    preview2.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                alert("Veillez selectinoner un fichier image.");
-                fileInput.value = ""; // reinitialiser le champ input
-                const preview2 = document.getElementById("preview2");
-                preview2.style.display = 'none'; //cache l'image de previsualisation
-            }
-        }
-
-        function previewImage3(event) {
-            const fileInput = event.target;
-            const file = event.target.files[0];
-            if(file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const preview3 = document.getElementById("preview3");
-                    preview3.src = e.target.result;
-                    preview3.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                alert("Veillez selectinoner un fichier image.");
-                fileInput.value = ""; // reinitialiser le champ input
-                const preview = document.getElementById("preview3");
-                preview3.style.display = 'none'; //cache l'image de previsualisation
-            }
-        }
-
-        function previewImage4(event) {
-            const fileInput = event.target;
-            const file = event.target.files[0];
-            if(file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const preview1 = document.getElementById("preview4");
-                    preview4.src = e.target.result;
-                    preview4.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                alert("Veillez selectinoner un fichier image.");
-                fileInput.value = ""; // reinitialiser le champ input
-                const preview4 = document.getElementById("preview4");
-                preview4.style.display = 'none'; //cache l'image de previsualisation
-            }
-        }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const fileInput1 = document.getElementById('affiche_activite');
+            const fileInput1 = document.getElementById('profil_utilisateur');
             if (fileInput1.files.length > 0) {
-                previewImage1({target: fileInput1});
-            }
-
-            const fileInput2 = document.getElementById('photo1');
-            if (fileInput2.files.length > 0) {
-                previewImage2({target: fileInput2});
-            }
-
-            const fileInput3 = document.getElementById('photo2');
-            if (fileInput3.files.length > 0) {
-                previewImage3({target: fileInput3});
-            }
-
-            const fileInput4 = document.getElementById('photo3');
-            if (fileInput4.files.length > 0) {
-                previewImage4({target: fileInput4});
+                previewImage({target: fileInput1});
             }
 
         });
-        document.getElementById('affiche_activite').addEventListener('change', previewImage1)
-        document.getElementById('photo1').addEventListener('change', previewImage2)
-        document.getElementById('photo2').addEventListener('change', previewImage3)
-        document.getElementById('photo3').addEventListener('change', previewImage4)
+        document.getElementById('profil_utilisateur').addEventListener('change', previewImage)
 
 
     </script>
