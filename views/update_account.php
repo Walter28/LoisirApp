@@ -216,7 +216,7 @@
                                 </div>
                                 <div >
                                     <label for="profil_utilisateur" class="mb-3 mt-4"><h3>Profile</h3></label>
-                                    <input type="file"  name="profil_utilisateur" value="">
+                                    <input type="file"  name="profil_utilisateur">
                                     <input type="hidden"  name="profil_utilisateur_old" value="<?= $utilisateur->getProfilUtilisateur() ?>">
                                     <img src="../assets/images/profiles_users/<?= $utilisateur->getProfilUtilisateur() ?>" width="200" height="auto" class="img-thumbnail" alt="" srcset="">
                                 </div>
