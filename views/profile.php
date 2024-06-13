@@ -69,7 +69,13 @@
 
 <body class="body-fixed">
     
+    <?php include_once("../controllers/getListeUtilisateurs.php") ?>
     <?php include_once("../controllers/getAdditional.php") ?>
+    <?php
+        if(!isset($_SESSION['userid'])) {
+            header("Location:../index.php");
+        }
+    ?>
     <?php
         $additional = getAdditional($_SESSION['userid']);
         if ($additional == 0 or $additional =="") {
