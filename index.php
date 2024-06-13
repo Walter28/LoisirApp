@@ -177,7 +177,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="banner-img-wp">
-                                    <div class="banner-img" style="background-image: url(assets/images/photo_28_2024-05-14_04-00-26.jpg);">
+                                    <div class="banner-img" style="background-image: url(assets/images/serenayy.jpg);">
                                     </div>
                                 </div>
                                 <div class="banner-img-text mt-4 m-auto">
@@ -252,7 +252,7 @@
                     <div class="row">
                         <div class="col-lg-8 m-auto">
                             <div class="about-video">
-                                <div class="about-video-img" style="background-image: url(assets/images/photo_28_2024-05-14_04-00-26);">
+                                <div class="about-video-img" style="background-image: url(assets/images/serna11.jpg);">
                                 </div>
                                 <div class="play-btn-wp">
                                     <a href="assets/images/voir_goma.mp4" data-fancybox="video" class="play-btn">
