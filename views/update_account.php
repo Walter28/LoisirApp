@@ -69,7 +69,11 @@
 
 <body class="body-fixed">
     <?php include_once("../controllers/getListeUtilisateurs.php") ?>
-
+    <?php
+        if(!isset($_SESSION['userid'])) {
+            header("Location:../index.php");
+        }
+    ?>
 
     <!-- start of header  -->
     <header class="site-header">
