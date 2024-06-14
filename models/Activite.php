@@ -228,7 +228,7 @@
 
         static function getRecenteActivites() {
             global $db;
-            $requete = 'SELECT * FROM activite ORDER BY date_creation_activite DESC LIMIT 6 ';
+            $requete = 'SELECT * FROM activite ORDER BY date_creation_activite DESC LIMIT 3 ';
             $statement = $db->prepare($requete);
             $execute = $statement->execute();
 
