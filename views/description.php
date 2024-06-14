@@ -316,7 +316,7 @@
                                                 <?php if(isset($_SESSION['comment']) && $_SESSION['comment'] == 200) { ?>
                                                     <div class="alert alert-success alert-dismissible fade-down show m-auto">
                                                         <strong>Félicition !</strong><br>
-                                                        Votre reservation a effectuée avec succé
+                                                        Votre commentaire a effectuée avec succé
                                                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                                                     </div><br>
                                                     <?php unset($_SESSION['comment']); ?>
@@ -326,7 +326,7 @@
                                                 <?php if(isset($_SESSION['comment']) && $_SESSION['comment'] == 101) { ?>
                                                     <div class="alert alert-danger alert-dismissible fade-down show m-auto">
                                                         <strong>Erreur !!!</strong><br>
-                                                        Il ya eu un probleme lors de la reservation
+                                                        Votre commentaire ne se pas effectué
                                                         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                                                     </div><br>
                                                     <?php unset($_SESSION['comment']); ?>
