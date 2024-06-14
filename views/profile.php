@@ -71,6 +71,7 @@
     
     <?php include_once("../controllers/getListeUtilisateurs.php") ?>
     <?php include_once("../controllers/getAdditional.php") ?>
+    <?php include_once("../controllers/getAllActivites.php") ?>
     <?php
         if(!isset($_SESSION['userid'])) {
             header("Location:../index.php");
@@ -183,25 +184,27 @@
                 </div><br>
             <?php } ?>
 
+
+            <?php $utilisateur = getUtilisateurById($_SESSION['userid']) ?>
             <section class="hero main-banne mt-5" id="home">
                 <div class="main-content" data-aos="fade-in">
-                    <h4>Hi, Ther,</h4>
-                    <h1>I'm <span>Benjamin Mugangu</span></h1>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti et impedit 
-                        doloremque itaque laudantium dolorum inventore. Ipsum, cumque quae! Impedit 
-                        tempora ullam provident quia commodi officiis maiores corporis id nemo.</p>
+                    <h4>Hey, salut</h4>
+                    <h1>Je suis <span><?= $utilisateur->getNomUtilisateur().' '.$utilisateur->getPrenomUtilisateur()?></span></h1>
+                    <p>
+                        <?= $utilisateur->getDescriptionUtilisateur() ?>
+                    </p>
                     <div class="social">
-                        <a href="#"><i class="ri-facebook-fill"></i></a>
-                        <a href="#"><i class="ri-instagram-fill"></i></a>
-                        <a href="#"><i class="ri-twitter-fill"></i></a>
-                        <a href="#"><i class="ri-youtube-fill"></i></a>
+                        <a href="<?= $utilisateur->getLinkFb() ?>"><i class="ri-facebook-fill"></i></a>
+                        <a href="<?= $utilisateur->getLinkInsta() ?>"><i class="ri-instagram-fill"></i></a>
+                        <a href="<?= $utilisateur->getLinkX() ?>"><i class="ri-twitter-fill"></i></a>
+                        <a href="<?= $utilisateur->getLinkYout() ?>"><i class="ri-youtube-fill"></i></a>
                     </div>
         
-                    <div class="main-btn">
-                        <a href="#" class="btn">Here me</a>
-                        <a href="#" class="btn btn2">Voir activite</a>
+                    <!-- <div class="main-btn">
+                        <a href="#contact" class="btn">Me contacter</a>
+                        <a href="#Services" class="btn btn2">Voir activite</a>
                         
-                    </div>
+                    </div> -->
                 </div>
             </section>
         
@@ -210,37 +213,37 @@
         
             <section class="about row" id="about">
                 <div class="about-img col-lg-6" data-aos="zoom-in-down">
-                    <img src="../assets/images/ben.jpg" alt="">
+                    <img src="../assets/images/profiles_users/<?= $utilisateur->getProfilUtilisateur() ?>" alt="">
                 </div>
             
             
                 <div class="about-text col-lg-6" data-aos="zoom-in-up">
-                    <h2>I am Product <span>Designer</span> <br> & Web Developper
+                    <h2>Je suis <span><?= $utilisateur->getJobUtilisateur() ?></span> <br>
                     </h2>
                     <div class="exp-area">
                         <p class="exp">
                             Experience:
-                            <span>12 Years</span>
+                            <span><?= $utilisateur->getYearXperiaUtilisateur() ?></span>
                         </p>
             
                         <p class="exp">
                             Specialty:
-                            <span>Product Designer, Developer</span>
+                            <span> - </span>
                         </p>
             
                         <p class="exp">
                             Addresse:
-                            <span>Sylhet, Bangladesh</span>
+                            <span><?= $utilisateur->getAddressUtilisateur() ?></span>
                         </p>
             
                         <p class="exp">
                             Email:
-                            <span>mugangubenjamin696@gmail.com</span>
+                            <span><?= $utilisateur->getEmailUtilisateur() ?></span>
                         </p>
             
                         <p class="exp">
                             Phone
-                            <span>0971556093</span>
+                            <span><?= $utilisateur->getPhoneUtilisateur() ?></span>
                         </p>
             
                         <p class="exp">
@@ -249,7 +252,7 @@
                         </p>
             
                         <div>
-                            <a href="#" class="btn">View All Projects</a>
+                            <!-- <a href="#" class="btn">View All Projects</a> -->
                         </div>
                     </div>
                 </div>
@@ -263,7 +266,8 @@
                 </div>
         
                 <div class="services-content" data-aos="zoom-in-up">
-                    <div class="box">
+
+                    <!-- <div class="box">
                         <img src="../assets/images/icone3.jpg" class="icone" alt="">
                         <h3>UI/UX Design</h3>
                         <p>Lorem ipsum dolorsit amet consectetur adipisicing elit. Aperiam doloribus
@@ -274,38 +278,36 @@
                                 VOIR L'ACTIVITE
                                 <i class="ri-arrow-right-line"></i>
                              </a>
+                    </div> -->
+
+                    <div class="row">
+
+                        <?php foreach ($activites = getListeActivites() as $activite) { ?>
+
+                        <div class="col-lg-4">
+                            <div class="blog-box">
+                                <div class="blog-img back-img"
+                                    style="background-image: url(../assets/images/activities_photos/<?= $activite->getPhoto1() ?>);"></div>
+                                <div class="blog-text">
+                                    <p class="blog-date"><?= $activite->getDateActivite() ?></p>
+                                    <a href="#" class="h4-title"><?= $activite->getTitreActivite() ?></a>
+                                    <p><?= $activite->getDescriptionActivite() ?>
+                                    </p>
+                                    <a class="sec-btn-profil" href="views/description.php?id=<?= $activite->getIdActivite() ?>">Voir Activite</a>
+                                    <a class="sec-btn-profil delete bg-danger" href="views/description.php?id=<?= $activite->getIdActivite() ?>">Effacer Activite</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php } ?>
+
                     </div>
-        
-                    <div class="box">
-                        <img src="../assets/images/icone.jpg"  class="icone" alt="">
-                        <h3>UI/UX Design</h3>
-                        <p>Lorem ipsum dolorsit amet consectetur adipisicing elit. Aperiam doloribus
-                             saepe error amet excepturi dolorum atque adipisci,
-                             maiores animi consequuntur veniam eveniet tempore is
-                             te ducimus minus laboriosam sit aliquam. Voluptas.</p>
-                             <a href="#">
-                                VOIR L'ACTIVITE
-                                <i class="ri-arrow-right-line"></i>
-                             </a>
-                    </div>
-        
-                    <div class="box">
-                        <img src="../assets/images/icone2.jpg" class="icone" alt="">
-                        <h3>UI/UX Design</h3>
-                        <p>Lorem ipsum dolorsit amet consectetur adipisicing elit. Aperiam doloribus
-                             saepe error amet excepturi dolorum atque adipisci,
-                             maiores animi consequuntur veniam eveniet tempore is
-                             te ducimus minus laboriosam sit aliquam. Voluptas.</p>
-                             <a href="#">
-                                VOIR L'ACTIVITE
-                                <i class="ri-arrow-right-line"></i>
-                             </a>
-                    </div>
+
                 </div>
             </section>
         
             <!-- portofolio -->
-            <section class="portofolio" id="portofolio">
+            <!-- <section class="portofolio" id="portofolio">
                 <div class="center-text"data-aos="fade-down">
                     <h2>My <span>Services</span></h2>
                 </div>
@@ -377,13 +379,13 @@
                     </div>
                 </div>
         
-            </section>
+            </section> -->
         
             <!-- contacts -->
         
             <section class="contact" id="contact">
                 <div class="center-text" data-aos="fade-down">
-                    <h2>Contact <span>Me</span></h2>
+                    <h2 class="mb-4">Contact <span>Admin</span></h2>
                 </div>
         
                 <div class="contact-form">
