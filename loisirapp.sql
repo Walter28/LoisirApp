@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS activite (
     titre_activite VARCHAR(50) NOT NULL,
     domaine_activite VARCHAR(50) NOT NULL,
     lieu_activite VARCHAR(50) NOT NULL,
-    description_activite VARCHAR(50) NOT NULL,
+    description_activite VARCHAR(255) NOT NULL,
     prix_activite VARCHAR(50) NOT NULL,
     date_creation_activite date NOT NULL,
     date_activite date NOT NULL,
