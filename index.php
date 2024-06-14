@@ -991,7 +991,7 @@
                                             </div>
                                             <div class="testimonials-box-text">
                                                 <h3 class="h3-title">
-                                                    Nilay Hirpara
+                                                    Walter C.
                                                 </h3>
                                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque,
                                                     quisquam.</p>
@@ -1013,7 +1013,7 @@
                                             </div>
                                             <div class="testimonials-box-text">
                                                 <h3 class="h3-title">
-                                                    Ravi Kumawat
+                                                    Ben Jamin
                                                 </h3>
                                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque,
                                                     quisquam.</p>
@@ -1035,7 +1035,7 @@
                                             </div>
                                             <div class="testimonials-box-text">
                                                 <h3 class="h3-title">
-                                                    Navnit Kumar
+                                                    Chris Tian
                                                 </h3>
                                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque,
                                                     quisquam.</p>
@@ -1057,7 +1057,7 @@
                                             </div>
                                             <div class="testimonials-box-text">
                                                 <h3 class="h3-title">
-                                                    Somyadeep Bhowmik
+                                                    Jo Seph
                                                 </h3>
                                                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque,
                                                     quisquam.</p>
@@ -1185,7 +1185,7 @@
                                             <form action="#" class="newsletter-form">
                                                 <input type="email" class="form-input"
                                                     placeholder="Enter votre email" required>
-                                                <button type="submit" class="sec-btn primary-btn">Submit</button>
+                                                <button type="submit" class="sec-btn primary-btn">Soumettre</button>
                                             </form>
                                         </div>
                                     </div>
