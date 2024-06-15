@@ -124,7 +124,7 @@
                                                 <span>Mon Compte</span>
                                             </a>
                                             <!-- item-->
-                                            <a href="?deconnexion=true" class="dropdown-item">
+                                            <a href="&deconnexion=true" class="dropdown-item">
                                                 <i class="mdi mdi-logout me-1"></i>
                                                 <span>Se Deconnecter</span>
                                             </a>
@@ -245,9 +245,18 @@
 
                       </div>
                       <form action="../controllers/makeReservation.php" method="post">
+                        
+                        <?php if(isset($_SESSION['userid'])) { ?>
                         <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['userid'] ?>">
+                        <?php } ?>
                         <input type="hidden" name="id_activite" value="<?= $_GET['id'] ?>">
+                        
+                        <?php if(isset($_SESSION['userid'])) { ?>
                         <button type="submit">Reserver</button>
+                        <?php } ?>
+                        <?php if(!isset($_SESSION['userid'])) { ?>
+                        <button type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Please login before booking ...">Reserver</button>
+                        <?php } ?>
                       </form>
                     </div>
                 </div>
@@ -307,7 +316,7 @@
                                     <div class="row">
                                         <div class="col-lg-12 px-5">
                                             <div class="sec-title text-center mb-5">
-                                                <p class="sec-sub-title mb-3">AVis</p>
+                                                <p class="sec-sub-title mb-3">Avis</p>
                                                 <h4 class="h2-title">Ajouter un commentaire</h4>
                                                 <div class="sec-title-shape mb-4">
                                                     <!-- <img src="../assets/images/title-shape.svg" alt=""> -->
@@ -351,13 +360,20 @@
                                                         <option value="5">5</option>
                                                     </select>
                                                 </div>
+                                                <?php if(isset($_SESSION['userid'])) { ?>
                                                 <input type="hidden" name="id_utilisateur" value="<?= $_SESSION['userid'] ?>">
+                                                <?php } ?>
                                                 <input type="hidden" name="id_activite" value="<?= $_GET['id'] ?>">
                                                 <div class="bouton">
                                                     <!-- <span>-</span>
                                                     <label>1</label>
                                                     <span>+</span> -->
+                                                    <?php if(isset($_SESSION['userid'])) { ?>
                                                     <input type="submit" class="form-input" value="Commenter">
+                                                    <?php } ?>
+                                                    <?php if(!isset($_SESSION['userid'])) { ?>
+                                                    <input type="button" class="form-input" data-bs-toggle="tooltip" data-bs-placement="top" title="Please login first to comment ..." value="Commenter">
+                                                    <?php } ?>
                                                 </div>
                                             </form>
                                             
@@ -524,6 +540,13 @@
           const line = document.querySelector('.home');
           line.style.background = change;
         }
+
+        // For tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+
     </script>
 
 </body>
