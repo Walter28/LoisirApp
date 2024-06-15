@@ -14,6 +14,8 @@
     
         $commentaire = new Commentaire($id_utilisateur, $id_activite, $contenu, $note, $date_commentaire);
     
+        // print_r($commentaire);
+        // die;
         if ($commentaire->enregistrerCommentaire()) {
             $_SESSION['comment'] = 200;
             header("Location:../views/description.php?id=$id_activite");
